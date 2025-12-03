@@ -1,0 +1,95 @@
+0 - abrir o realizar donwload do .editorconfig
+
+1 - npm init no terminal
+
+2 - instalação do eslint --init
+
+3 - configuração no padrao do projeto
+
+4 - download nomedon sucrase por como --save-dev
+- extensão do eslint
+- configuração no vscode do eslint
+
+5 - npm run dev
+
+6 - criação do server.js e app.js e nodemon.json com execMap com configuração do video
+
+7 - criação da pasta SRC e dentro dela 'Models' e 'controllers' e tb pasta database, config e middlewares e routes
+
+8 - importando express e criando a classe app no app.js, tb vamos colocar dentro middlewares e routes() dentro da classe vamos por this.app, this.mid, this.routes 
+
+9 - dentro do middlewares dentro da classe ainda, vamos por this.use.app e urlecoded com extended true e tb pegar o use com express.json
+
+10 - vamos chamar o export default new App().app ESTAMOS INSTANCIANDO A CLASSE E EXPORTANDO
+
+11 - Vamos colocar HomeRoutes e HomeController dentro das respectivas pastas
+
+12 - No HomeRounter vamo importar o router from express e tabmém criar uma variavel para new Rounter
+
+13 - Vamos fazer primeiro rounter com get entao estamos puxando vamos por requisição e resposta com arrow function e um texto de teste, e vamos exportar o rounter
+
+14 - no app.js vamos importar o HomeRountes com o caminho dele 
+
+15 -
+
+12 -
+
+13 -
+
+14 -
+ 
+15 -
+
+12 - 
+
+13 -
+
+15 -
+
+12 -
+
+13 -
+
+14 -
+ 
+15 -
+
+12 - 
+
+13 -
+
+15 -
+
+12 -
+
+13 -
+
+14 -
+ 
+15 -
+
+12 - 
+
+13 -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
