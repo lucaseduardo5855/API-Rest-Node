@@ -30,19 +30,20 @@
 
 14 - no app.js vamos importar o HomeRountes com o caminho dele 
 
-15 -
+15 - vamos importar o app no server.js e vamos setar uma constante com uma porta (3001)
 
-12 -
+12 - Vamos pegar o app.listen e pegar a port com arrow function e falando q o app ta escutando com `` com console.log e testar com run dev no terminal
 
-13 -
+13 - Vamos abrir o insomnia vamos fazendo um Home dentro e dentro vamos pegar baseurl: dentro do insomniia p testar a API com status 200 se tiver tudo ok
 
-14 -
+14 - vamos no HomeController e vamos fazer uma classe de HomeController onde o index vai pegar req, res e o res.json para tudoCerto = true, e vamos importar a classe ja instanciada com exports new e a classe ...
  
-15 -
+15 - no homeRoutes.js vamos importar o Homecontroler com o caminho dele, e vamos subsituir a função de Ola mundo etc, pelo router.get com HomeController onde vamos testar no insminia para ver se da status 200
 
-12 - 
+ - RESUMO DA AULA: criaram uma classe com express q é classe App e onde tivemos q importar uma rota entao em homeRouter onde criamos uma rota só pra Home q é homeRoutes.js onde desencadeou de ter q criar um controller para nós jogarmos no método get, na API vamos sempre lembrar de mandar codigo ex 200, 201, 400 etc. sempre lembrar de criar o gitigore e por o .env dentro
+Como é uma API Rest no HomeController nos enviamos com res.json nao res.send e res.render 
 
-13 -
+13 - 
 
 15 -
 
