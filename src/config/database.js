@@ -13,7 +13,7 @@ module.exports = {
 
   define: {
     timestamps: true,
-    underscored: true,
+    underscored: true, //ele converte camelCase para snake_case com _
     underscoredAll: true,
     'createdAt': 'created_at',
     'updatedAt': 'updated_at',

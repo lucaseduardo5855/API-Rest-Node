@@ -1,10 +1,16 @@
-import { Router } from 'express'; //estamos importando apenas o router
+import Aluno from '../models/Aluno.js';
 
 class HomeController { //definindo a classe HomeController
-    index(req, res) {
-      res.json({
-        tudoCerto: true,
-      });
+    async index(req, res) {
+      const novoAluno = await Aluno.create({
+        nome: 'Maria',
+        sobrenome: 'Luiza',
+        email: 'Luiza.eduardo5855@gmail.com',
+        idade: 19,
+        peso: 66,
+        altura: 1.50,
+      })
+      res.json(novoAluno);
     }
   }
 
