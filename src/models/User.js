@@ -1,11 +1,11 @@
-import { Model, DataTypes } from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 import bcryptjs from 'bcryptjs';
 
 export default class User extends Model {
   static init(sequelize) {
     super.init({
       nome: {
-        type: DataTypes.STRING, // Use DataTypes aqui
+        type: Sequelize.STRING,
         defaultValue: '',
         validate: {
           len: {
@@ -15,9 +15,11 @@ export default class User extends Model {
         },
       },
       email: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         defaultValue: '',
-        unique: { msg: 'Email já existe' },
+        unique: {
+          msg: 'Email já existe',
+        },
         validate: {
           isEmail: {
             msg: 'Email inválido',
@@ -25,11 +27,11 @@ export default class User extends Model {
         },
       },
       password_hash: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         defaultValue: '',
       },
-      password: {
-        type: DataTypes.VIRTUAL,
+      password: { // campo virtual que vamos receber do usuario mas nao vai para o banco de dados
+        type: Sequelize.VIRTUAL,
         defaultValue: '',
         validate: {
           len: {
@@ -42,9 +44,17 @@ export default class User extends Model {
       sequelize,
     });
 
-    this.addHook('beforeSave', async user => { // Hook para criptografar a senha antes de salvar
-      user.password_hash = await bcryptjs.hash(user.password, 8);
-    });
+    // antes de salvar o usuario, vamos criar o hash da senha
+   this.addHook('beforeSave', async user => {
+  if (user.password) { 
+    user.password_hash = await bcryptjs.hash(user.password, 8);
+  }
+});
+
     return this;
+  }
+
+  passwordisValid(password) {
+    return bcryptjs.compare(password, this.password_hash);
   }
 }

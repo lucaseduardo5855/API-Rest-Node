@@ -1,16 +1,15 @@
-import { Router} from 'express'; //estamos importando apenas o router
-import UserController from '../controllers/UserController.js'; //importando o Homecontroller
+import { Router} from 'express';
+import userController from '../controllers/UserController.js';
+import loginRequired from '../middlewares/loginRequired.js';
 
 const router = new Router();
 
-router.post('/', UserController.store);
+//Não deveria existir
+router.get('/', loginRequired, userController.index);
+router.get('/:id', userController.show);
+
+router.post('/', userController.store);
+router.put('/', loginRequired, userController.update);
+router.delete('/', loginRequired, userController.delete);
 
 export default router;
-
-/*
-index = lista todos os usuarios > get
-store/create = cria um novo usuario > post
-delete = apaga um usuario > delete
-show = mostra um usuario > get
-update = atualiza um usuario > put ou patch
-*/

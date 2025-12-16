@@ -17,9 +17,9 @@ module.exports = {
         email: {
           type: Sequelize.STRING,
           allowNull: false,
-          unique: true, //nao pode ter email repetido
+          unique: true,
         },
-        password_hash: { //armazenar a senha criptografada
+        password_hash: {
           type: Sequelize.STRING,
           allowNull: false,
         },
@@ -35,7 +35,7 @@ module.exports = {
   },
 
   async down(queryInterface) {
-    await queryInterface.dropTable('alunos');
+    await queryInterface.dropTable('users');
 
   }
 };
