@@ -16,9 +16,8 @@ class UserController {
   //INDEX - lista todos os usuários
   async index(req, res) {
     try {
-      const users = await User.findAll();
-      console.log('USER ID', req.userId);
-      console.log('USER EMAIL', req.userEmail);
+      const users = await User.findAll({attributes: ['id', 'nome', 'email']}); // findAll = busca todos os usuários, mas só os atributos id, nome e email
+
       return res.json(users);
     } catch (e) {
       return res.json(null);
@@ -26,12 +25,13 @@ class UserController {
   }
 
   //SHOW - cria um usuário
-  async show(req, res) {
+async show(req, res) {
     try {
-      const { id } = req.params; // pega o id dos parâmetros da requisição com destructuring
-      const users = await User.findByPk(id); // findByPk = é para buscar pela chave primária (id)
+      const user = await User.findByPk(req.params.id, {
+        attributes: ['id', 'nome', 'email'],
+      });
 
-      return res.json(users);
+      return res.json(user);
     } catch (e) {
       return res.json(null);
     }
@@ -40,15 +40,8 @@ class UserController {
 // UPDATE - atualiza um usuário
 async update(req, res) {
   try {
-    // 1. Verificação inicial do ID
-    if (!req.params.id) {
-      return res.status(400).json({
-        errors: ['ID não enviado.'],
-      });
-    }
-
     // 2. Busca o usuário
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.userId);
 
     // 3. Verifica se o usuário existe
     if (!user) {
