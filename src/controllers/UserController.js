@@ -1,11 +1,13 @@
 import User from '../models/User.js';
 
+//STORE - cria um usuário
 class UserController {
   // A função chama STORE para bater com a rota
   async store(req, res) {
     try {
       const novoUser = await User.create(req.body); // pega o corpo da requisição pelo body do Sequelize
-      return res.json(novoUser);
+      const {id, nome, email} = novoUser;
+      return res.json({id, nome, email});
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message), // mapeia os erros e retorna só as mensagens
@@ -51,7 +53,8 @@ async update(req, res) {
     }
 
     const novosDados = await user.update(req.body);
-    return res.json(novosDados);
+    const {id, nome, email} = novosDados;
+    return res.json({id, nome, email});
 
   } catch (e) {
     console.log(e);
@@ -64,13 +67,8 @@ async update(req, res) {
   //DELETE - deleta um usuário
   async delete(req, res) {
   try {
-    if (!req.params.id) { //  Verificação inicial do ID
-      return res.status(400).json({
-        errors: ['ID não enviado.'],
-      });
-    }
 
-    const user = await User.findByPk(req.params.id); // busca o usuário se existe
+    const user = await User.findByPk(req.userId); // busca o usuário se existe
 
     if (!user) { // Verifica se o usuário existe
       return res.status(400).json({
@@ -79,7 +77,7 @@ async update(req, res) {
     }
 
    await user.destroy(); // deleta o usuário
-    return res.json(user);
+    return res.json(null);
 
   } catch (e) {
     console.log(e);
