@@ -15,6 +15,7 @@ export default [
       "no-console": "off", // Permite console.log
       "no-unused-vars": "warn", // (Opcional) Apenas avisa sobre variáveis não usadas, não quebra o código
       "class-methods-use-this": "off", // Permite métodos de classe que não usam 'this'
+      "camelcase": "off"
     },
   },
 ];
