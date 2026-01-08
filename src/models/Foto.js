@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import appConfig from '../config/app.Config.js';
 
 export default class Foto extends Model {
   static init(sequelize) {
@@ -21,6 +22,12 @@ export default class Foto extends Model {
           },
         },
       },
+      url: { // campo virtual, nao existe na tabela do banco de dados
+        type: Sequelize.VIRTUAL,
+        get() {
+          return `${appConfig.url}/imagens/${this.getDataValue('filename')}`; // retorna a url completa da foto
+        }
+        },
     }, {
       sequelize,
       tableName: 'fotos',

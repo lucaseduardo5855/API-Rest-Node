@@ -8,7 +8,7 @@ class AlunoController {
       order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // ordenando os alunos pelo id em ordem decrescente e as fotos de cada aluno tambem em ordem decrescente
       include: {
         model: Foto,
-        attributes: ['filename'],
+        attributes: ['filename', 'url'],
       },
     });
     res.json(alunos);
@@ -40,7 +40,7 @@ class AlunoController {
         order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // ordenando as fotos do aluno em ordem decrescente pelo id
         include: {
           model: Foto,
-          attributes: ['filename'],
+          attributes: ['filename', 'url'],
         },
       }); //procurar o aluno pelo id
 

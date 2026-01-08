@@ -1,7 +1,9 @@
 import dotenv from 'dotenv';
+import {resolve} from 'path';
 dotenv.config();
 
 import './src/database';
+
 
 import express from 'express';
 import homeRoutes from './src/routes/homeRoutes.js';
@@ -20,6 +22,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true })); //Permite dados enviado por formularios HTML
     this.app.use(express.json()); //Permite que dados enviados em JSON sejam interpretados
+    this.app.use(express.static(resolve(__dirname, '..', 'uploads'))); //Define a pasta "uploads" como estatica para acesso externo
   }
 
   routes() {
