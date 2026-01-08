@@ -5,9 +5,10 @@ class AlunoController {
   async index(req, res) {
     const alunos = await Aluno.findAll({
       attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura'],
-      order: [['id', 'DESC']],
+      order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // ordenando os alunos pelo id em ordem decrescente e as fotos de cada aluno tambem em ordem decrescente
       include: {
         model: Foto,
+        attributes: ['filename'],
       },
     });
     res.json(alunos);
@@ -34,7 +35,14 @@ class AlunoController {
         return res.status(400).json({ errors: ['Faltando ID'] });
       }
 
-      const aluno = await Aluno.findByPk(id); //procurar o aluno pelo id
+      const aluno = await Aluno.findByPk(id, {
+        attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura'],
+        order: [['id', 'DESC'], [Foto, 'id', 'DESC']], // ordenando as fotos do aluno em ordem decrescente pelo id
+        include: {
+          model: Foto,
+          attributes: ['filename'],
+        },
+      }); //procurar o aluno pelo id
 
       if(!aluno) {
         return res.status(400).json({errors: ['Aluno não existe']});
