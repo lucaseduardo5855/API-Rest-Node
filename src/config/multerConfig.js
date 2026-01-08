@@ -1,22 +1,22 @@
-import multer from "multer";
-import { extname, resolve} from 'path';
+import multer from 'multer'; // multer serve para fazer upload de arquivos
+import { extname, resolve} from 'path'; // extname pega a extensao do arquivo, resolve serve para resolver caminhos
 
-const aleatorio = () => Math.floor(Math.random() * 10000 + 10000); //vai retornar valor aleatorio de 10mil a 20mil
+const aleatorio = () => Math.floor(Math.random() * 10000 + 20000); // funcao que gera um numero aleatorio
 
 export default {
   fileFilter: (req, file, cb) => {
-    if(file.mimetype !== 'image/png' && file.mimetype !== 'image/jpeg') {
-      return cb(new multer.MulterError('Arquivo precisa ser PNG ou JPG'));
+    if(file.mimetype !== 'image/png' && file.mimetype !== 'image/jpeg'){ //mimetype verifica o tipo do arquivo
+      return cb(new multer.MulterError('Arquivo invalido. Apenas PNG e JPEG são aceitos.'));
+    }else{
+      return cb(null, true);
     }
-
-    return cb(null, true);
   },
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, resolve(__dirname, '..', '..', 'uploads'));//caminho onde vai guardar
+      cb(null, resolve(__dirname, '..', '..', 'uploads'));
     },
-    filename: (req, file, cb) => { //"RG" único do arquivo para evitar que uma foto sobrescreva a outra.
-      cb(null, `${Date.now()}_${aleatorio()}${extname(file.originalname)}`); //foto q chama a data + a extesão do arquivo (ex: jpg) ex> Algo como 17098234_15402.png.
-    },
-  }),
+    filename: (req, file, cb) => {
+      cb(null, `${Date.now()}_${aleatorio()} ${extname(file.originalname)}`)
+    }
+  })
 };

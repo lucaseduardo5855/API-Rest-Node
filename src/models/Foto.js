@@ -8,16 +8,16 @@ export default class Foto extends Model {
         defaultValue: '',
         validate: {
           notEmpty: {
-            msg: 'Campo não pode ficar vazio',
+            msg: 'Campo não pode ficar vazio'
           },
         },
       },
-       filename: {
+      filename: {
         type: Sequelize.STRING,
         defaultValue: '',
         validate: {
-           notEmpty: {
-            msg: 'Campo não pode ficar vazio',
+          notEmpty: {
+            msg: 'Campo não pode ficar vazio'
           },
         },
       },
@@ -29,6 +29,6 @@ export default class Foto extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Aluno, {foreignKey: 'aluno_id'});
+    this.belongsTo(models.Aluno, { foreignKey: 'aluno_id' }); // este modelo pertence a outro model, essa ligacao eh feita pela chave estrangeira aluno_id
   }
 }

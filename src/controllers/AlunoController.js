@@ -1,111 +1,94 @@
-import Aluno from '../models/Aluno.js';
+import Aluno from '../models/Aluno';
+import Foto from '../models/Foto';
 
 class AlunoController {
   async index(req, res) {
-    const alunos = await Aluno.findAll();
+    const alunos = await Aluno.findAll({
+      attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura'],
+      order: [['id', 'DESC']],
+      include: {
+        model: Foto,
+      },
+    });
     res.json(alunos);
   }
 
+  //STORE - criar
   async store(req, res) {
-    try {
-
+    try{
       const aluno = await Aluno.create(req.body);
-
       return res.json(aluno);
+
+    }catch(e){
+      return res.status(400).json({errors: e.errors.map((e) => e.message)});
+    }
+   } //criar um novo aluno
+
+
+  //SHOW - pegar um unico aluno
+  async show(req, res) { //pegar um unico aluno
+    try {
+      const { id } = req.params; //pegar o id dos parametros da requisicao
+
+      if (!id) {
+        return res.status(400).json({ errors: ['Faltando ID'] });
+      }
+
+      const aluno = await Aluno.findByPk(id); //procurar o aluno pelo id
+
+      if(!aluno) {
+        return res.status(400).json({errors: ['Aluno não existe']});
+      }
+      return res.json(aluno); //retornar o aluno encontrado
+
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ['Erro desconhecido'],
-      });
+      return res.status(400).json({ errors: e.errors.map((e) => e.message) });
     }
   }
 
-  async show(req, res) {
-    try {
-      const { id } = req.params;
+  //DELETE
+  async delete(req, res) {try {
+      const { id } = req.params; //pegar o id dos parametros da requisicao
 
       if (!id) {
-        return res.status(400).json({
-          errors: ['Faltando ID'],
-        });
+        return res.status(400).json({ errors: ['Faltando ID'] });
       }
 
-      const aluno = await Aluno.findByPk(id);
+      const aluno = await Aluno.findByPk(id); //procurar o aluno pelo id
 
-      if (!aluno) {
-        return res.status(400).json({
-          errors: ['Aluno não existe'],
-        });
+      if(!aluno) {
+        return res.status(400).json({errors: ['Aluno não existe']});
       }
-
-      return res.json(aluno);
-
-    } catch (e) {
-      return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ['Erro desconhecido'],
-      });
-    }
-  }
-
-  async delete(req, res) {
-    try {
-      const { id } = req.params;
-
-      if (!id) {
-        return res.status(400).json({
-          errors: ['Faltando ID'],
-        });
-      }
-
-      const aluno = await Aluno.findByPk(id);
-
-      if (!aluno) {
-        return res.status(400).json({
-          errors: ['Aluno não existe'],
-        });
-      }
-
       await aluno.destroy();
-
-      return res.json({
-        apagado: true,
-      });
+      return res.json({msg: 'Aluno deletado com sucesso'});
 
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ['Erro desconhecido'],
-      });
-    }
-  }
+      return res.status(400).json({ errors: e.errors.map((e) => e.message) });
+    } } //deletar um aluno
 
-  async update(req, res) {
-    try {
-      const { id } = req.params;
+
+    //UPDATE
+  async update(req, res) { try {
+      const { id } = req.params; //pegar o id dos parametros da requisicao
 
       if (!id) {
-        return res.status(400).json({
-          errors: ['Faltando ID'],
-        });
+        return res.status(400).json({ errors: ['Faltando ID'] });
       }
 
-      const aluno = await Aluno.findByPk(id);
+      const aluno = await Aluno.findByPk(id); //procurar o aluno pelo id
 
-      if (!aluno) {
-        return res.status(400).json({
-          errors: ['Aluno não existe'],
-        });
+      if(!aluno) {
+        return res.status(400).json({errors: ['Aluno não existe']});
       }
 
-      
-      const alunoAtualizado = await aluno.update(req.body);
-
+      const alunoAtualizado = await aluno.update(req.body); //atualizar o aluno com os dados do corpo da req
       return res.json(alunoAtualizado);
 
+
     } catch (e) {
-      return res.status(400).json({
-        errors: e.errors ? e.errors.map((err) => err.message) : ['Erro desconhecido'],
-      });
-    }
-  }
+      return res.status(400).json({ errors: e.errors.map((e) => e.message) });
+    }} //atualizar um aluno
+
 }
 
 export default new AlunoController();

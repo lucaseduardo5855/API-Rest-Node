@@ -67,4 +67,8 @@ export default class Aluno extends Model {
     });
     return this;
   }
+
+  static associate(models) { // criando relacao entre aluno e foto
+    this.hasMany(models.Foto, { foreignKey: 'aluno_id' });// um aluno tem muitas fotos, hasMany é usado para relacao 1 para muitos
+  }
 }

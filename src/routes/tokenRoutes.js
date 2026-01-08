@@ -1,5 +1,5 @@
 import { Router} from 'express'; //estamos importando apenas o router
-import TokenController from '../controllers/TokenController.js'; //importando o Homecontroller
+import TokenController from '../controllers/TokenController.js'; //importando o TokenController
 
 const router = new Router();
 

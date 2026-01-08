@@ -46,7 +46,7 @@ export default class User extends Model {
 
     // antes de salvar o usuario, vamos criar o hash da senha
    this.addHook('beforeSave', async user => {
-  if (user.password) { 
+  if (user.password) {
     user.password_hash = await bcryptjs.hash(user.password, 8);
   }
 });
@@ -54,7 +54,7 @@ export default class User extends Model {
     return this;
   }
 
-  passwordisValid(password) {
-    return bcryptjs.compare(password, this.password_hash);
+  passwordisValid(password) {// método para verificar se a senha é válida
+    return bcryptjs.compare(password, this.password_hash);// compara a senha recebida com o hash armazenado
   }
 }

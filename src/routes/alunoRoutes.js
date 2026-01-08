@@ -9,6 +9,7 @@ router.get('/', AlunoController.index);
 router.post('/', loginRequired, AlunoController.store);
 router.put('/:id', loginRequired, AlunoController.update);
 router.get('/:id', AlunoController.show);
-router.delete('/:id', loginRequired, AlunoController.delete);
+router.delete('/', loginRequired, AlunoController.delete);
+
 
 export default router;

@@ -6,8 +6,9 @@ class UserController {
   async store(req, res) {
     try {
       const novoUser = await User.create(req.body); // pega o corpo da requisição pelo body do Sequelize
-      const {id, nome, email} = novoUser;
-      return res.json({id, nome, email});
+      const {id, nome, email} = novoUser;// pega os campos que queremos apenas
+      return res.json({id, nome, email}); // retorna só os campos desejados
+  
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message), // mapeia os erros e retorna só as mensagens
@@ -43,7 +44,7 @@ async show(req, res) {
 async update(req, res) {
   try {
     // 2. Busca o usuário
-    const user = await User.findByPk(req.userId);
+    const user = await User.findByPk(req.userId);//findybypk faz a busca pelo id que está na requisição
 
     // 3. Verifica se o usuário existe
     if (!user) {
@@ -52,7 +53,7 @@ async update(req, res) {
       });
     }
 
-    const novosDados = await user.update(req.body);
+    const novosDados = await user.update(req.body);// Atualiza os dados do usuário com o que veio no corpo da requisição
     const {id, nome, email} = novosDados;
     return res.json({id, nome, email});
 
@@ -67,7 +68,6 @@ async update(req, res) {
   //DELETE - deleta um usuário
   async delete(req, res) {
   try {
-
     const user = await User.findByPk(req.userId); // busca o usuário se existe
 
     if (!user) { // Verifica se o usuário existe
@@ -77,7 +77,7 @@ async update(req, res) {
     }
 
    await user.destroy(); // deleta o usuário
-    return res.json(null);
+   return res.json(null);
 
   } catch (e) {
     console.log(e);
