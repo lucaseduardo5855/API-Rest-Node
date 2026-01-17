@@ -50,3 +50,4 @@ class App {
 }
 
 export default new App().app;
+console.log("Forçando atualização do servidor agora!");
