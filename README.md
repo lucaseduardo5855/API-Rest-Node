@@ -25,7 +25,7 @@ Antes de começar, você precisará ter instalado em sua máquina:
 ## 🔧 Instalação
 1. **Clone o repositório**
    ```bash
-   git clone (https://github.com/lucaseduardo5855/API-Rest-Node.git)>](https://github.com/lucaseduardo5855/API-Rest-Node.git)
+   git clone https://github.com/lucaseduardo5855/API-Rest-Node.git
    cd "API Rest"
    ```
 
