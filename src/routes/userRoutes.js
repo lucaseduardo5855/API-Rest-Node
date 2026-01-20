@@ -1,6 +1,6 @@
-import { Router} from 'express';
-import userController from '../controllers/UserController.js';
-import loginRequired from '../middlewares/loginRequired.js';
+import { Router } from "express";
+import userController from "../controllers/UserController.js";
+import loginRequired from "../middlewares/loginRequired.js";
 
 const router = new Router();
 
@@ -8,8 +8,8 @@ const router = new Router();
 //router.get('/', userController.index); //lista todos os usuarios
 //router.get('/:id',  userController.show); //mostra um usuario
 
-router.post('/', loginRequired, userController.store);//cria usuario
-router.put('/', loginRequired, userController.update);//atualiza usuario
-router.delete('/', loginRequired, userController.delete);//deleta usuario
+router.post("/", userController.store); //cria usuario
+router.put("/", loginRequired, userController.update); //atualiza usuario
+router.delete("/", loginRequired, userController.delete); //deleta usuario
 
 export default router;

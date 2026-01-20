@@ -26,7 +26,11 @@ class TokenController {
       expiresIn: process.env.TOKEN_EXPIRATION,
     }); //gerando o token JWT- sign recebe 3 parametros: 1º o payload (dados que queremos colocar no token), 2º a chave secreta para assinar o token, 3º opções do token (tempo de expiração)
 
-    return res.json({ token, user: { nome: user.nome, id, email } }); //retornando o token
+    return res.json({
+      //retornando o token e o usuario com informações q vao p insomnia (API)
+      token,
+      user: { nome: user.nome, id, email },
+    });
   }
 }
 
