@@ -3,11 +3,17 @@
 API REST desenvolvida em Node.js para gerenciamento de alunos, com autenticação de usuários e upload de fotos.
 
 ## 📋 Descrição do Projeto
+<<<<<<< HEAD
 
 Este projeto consiste em uma API robusta seguindo o padrão **MVC (Model-View-Controller)**. O sistema permite o cadastro de usuários (que podem logar no sistema para obter um token JWT) e, uma vez autenticados, realizar o **CRUD** (Create, Read, Update, Delete) de alunos, incluindo o envio de fotos de perfil.
 
 ## 🚀 Tecnologias Utilizadas
 
+=======
+Este projeto consiste em uma API robusta seguindo o padrão **MVC (Model-View-Controller)**. O sistema permite o cadastro de usuários (que podem logar no sistema para obter um token JWT) e, uma vez autenticados, realizar o **CRUD** (Create, Read, Update, Delete) de alunos, incluindo o envio de fotos de perfil.
+
+## 🚀 Tecnologias Utilizadas
+>>>>>>> 33337fdfc0b3f3f6f76e28b040d98e0c90b8f770
 - **Node.js**: Ambiente de execução JavaScript.
 - **Express**: Framework web para construção da API.
 - **MariaDB** (MySQL Driver): Banco de dados relacional.
@@ -20,16 +26,25 @@ Este projeto consiste em uma API robusta seguindo o padrão **MVC (Model-View-Co
 - **Docker** (Opcional, se aplicável): Containerização.
 
 ## ⚙️ Pré-requisitos
+<<<<<<< HEAD
 
+=======
+>>>>>>> 33337fdfc0b3f3f6f76e28b040d98e0c90b8f770
 Antes de começar, você precisará ter instalado em sua máquina:
 - [Node.js](https://nodejs.org/en/)
 - [MariaDB](https://mariadb.org/) ou MySQL
 
 ## 🔧 Instalação
+<<<<<<< HEAD
 
 1. **Clone o repositório**
    ```bash
    git clone <URL_DO_SEU_REPOSITORIO>
+=======
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/lucaseduardo5855/API-Rest-Node.git
+>>>>>>> 33337fdfc0b3f3f6f76e28b040d98e0c90b8f770
    cd "API Rest"
    ```
 
