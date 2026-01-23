@@ -5,6 +5,7 @@ dotenv.config();
 import "./database/index.js";
 import cors from "cors";
 import helmet from "helmet";
+import delay from "express-delay";
 
 import express from "express";
 import homeRoutes from "./routes/homeRoutes.js";
@@ -35,6 +36,7 @@ class App {
   middlewares() {
     this.app.use(cors(corsOptions));
     this.app.use(helmet());
+    this.app.use(delay(2000));
     this.app.use(express.urlencoded({ extended: true })); //Permite dados enviado por formularios HTML
     this.app.use(express.json()); //Permite que dados enviados em JSON sejam interpretados
     this.app.use(express.static(resolve(__dirname, "..", "uploads"))); //Define a pasta "uploads" como estatica para acesso externo
